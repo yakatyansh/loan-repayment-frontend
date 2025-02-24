@@ -24,10 +24,26 @@ const App = () => {
     setLoanSchedule([]);
 
     try {
+      const formattedDate = new Date(formData.disbursement_date)
+        .toISOString()
+        .split("T")[0];
+
+      const requestData = {
+        ...formData,
+        disbursement_date: formattedDate,
+        principal: parseFloat(formData.principal),
+        tenure: parseInt(formData.tenure),
+        interest_rate: parseFloat(formData.interest_rate),
+        moratorium_period: parseInt(formData.moratorium_period),
+      };
+
+      console.log("Request Payload:", requestData); 
+
       const response = await axios.post(
         "https://loan-repayment-backend.onrender.com/schedule",
-        formData
+        requestData
       );
+
       if (response.data.error) {
         setError(response.data.error);
       } else {
