@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./LoanCalculator.css"; // Import CSS file
+import "./LoanCalculator.css"; 
 
 const LoanCalculator = () => {
   const [formData, setFormData] = useState({
@@ -112,11 +112,11 @@ const LoanCalculator = () => {
               {loanSchedule.map((installment, index) => (
                 <tr key={index}>
                   <td>{installment.installment_no}</td>
-                  <td>{installment.due_date}</td>
-                  <td>{installment.emi_amount}</td>
+                  <td>{installment.date}</td>
+                  <td>{installment.emi}</td>
                   <td>{installment.principal_component}</td>
                   <td>{installment.interest_component}</td>
-                  <td>{installment.remaining_balance}</td>
+                  <td>{installment.remaining_principal}</td>
                 </tr>
               ))}
             </tbody>
